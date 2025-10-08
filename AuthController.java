@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
+
+//Handling user registrations and logins
+//
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -24,12 +28,16 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody User newUser) {
         try {
-           
+
+			//find existing users email
             User existingUser = userService.findByEmail(newUser.getEmail());
             if (existingUser != null) {
                 return ResponseEntity.badRequest().body("User with this email already exists");
             }
-            
+
+
+			//saving users
+			
             User savedUser = userService.saveUser(newUser);
             return ResponseEntity.ok(savedUser);
         } catch (Exception e) {
@@ -69,6 +77,7 @@ public class AuthController {
         }
     }
     //retrieving the profile
+	//getting it
     
     @GetMapping("/profile/{userId}")
     public ResponseEntity<User> getProfile(@PathVariable long userId){
@@ -91,6 +100,8 @@ public class AuthController {
 			//Location (latitude, longitude)
 		//	Preferences (timezone, madhab)
 		//	Maybe email
+
+			//updating...
 			
 			existingUser.setName(updatedUser.getName());
 			existingUser.setLongitude(updatedUser.getLongitude());
