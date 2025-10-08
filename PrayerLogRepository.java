@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+
+// Repository interface for querying and managing prayer logs in the database
+
 public interface PrayerLogRepository extends JpaRepository<PRAYER_LOG, Long>{
 
 	List<PRAYER_LOG> findByUser(User user);
