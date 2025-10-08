@@ -36,7 +36,7 @@ public class ActivityController {
 			User user = userService.findById(id);
 			
 			activity.setUser(user);
-				
+				///have to save activity
 			Activity userActivity = activityService.saveActivity(activity);
 			
 				return ResponseEntity.ok(Map.of(
@@ -68,7 +68,13 @@ public class ActivityController {
 			@PathVariable long Id) {
 		
 		Optional<Activity> updated = activityService.findActivityById(Id);
+
+		//if were able to update...
+		//now were updating the activities here
+		
 		if(updated.isPresent()) {
+
+			
 			Activity existingActivity = updated.get();
 			
 			existingActivity.setTitle(activity.getTitle());
